@@ -1,1 +1,16 @@
-<h1>Hi There!</h1>
+<ul>
+  <li>All</li>
+  {% for category in categories %}
+  <li>{{ category.name }}</li>
+  {% endfor %}
+</ul>
+
+<ul>
+  {% for photo in photos %}
+  <li>
+    <p>{{ photo.category }}</p>
+    <img style="width: 200px" src="{{ photo.image.url }}" alt="some image" />
+    <p>{{ photo.description }}</p>
+  </li>
+  {% endfor %}
+</ul>
