@@ -2,8 +2,14 @@ from django.shortcuts import render, redirect
 from .models import *
 
 def index(request):
+    category = request.GET.get('category')
     categories = Category.objects.all()
-    photos = Photo.objects.all()
+
+    if category == None:
+        photos = Photo.objects.all()
+    else:
+        photos = Photo.objects.filter(category__name=category)
+    
 
     context = {'categories': categories, 'photos': photos,}
     return render(request, 'base/index.html', context)

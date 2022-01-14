@@ -1,7 +1,7 @@
 <ul>
-  <li>All</li>
+  <li><a href="{% url 'index' %}">All</a></li>
   {% for category in categories %}
-  <li>{{ category.name }}</li>
+  <li><a href="{% url 'index' %}?category={{ category.name }}">{{ category.name }}</a></li>
   {% endfor %}
   <li><a href="{% url 'add_photo' %}">Add photo</a></li>
 </ul>
