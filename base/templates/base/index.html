@@ -3,6 +3,7 @@
   {% for category in categories %}
   <li>{{ category.name }}</li>
   {% endfor %}
+  <li><a href="{% url 'add_photo' %}">Add photo</a></li>
 </ul>
 
 <ul>
@@ -11,6 +12,7 @@
     <p>{{ photo.category }}</p>
     <img style="width: 200px" src="{{ photo.image.url }}" alt="some image" />
     <p>{{ photo.description }}</p>
+    <a href="{% url 'view_photo' photo.id %}">View</a>
   </li>
   {% endfor %}
 </ul>

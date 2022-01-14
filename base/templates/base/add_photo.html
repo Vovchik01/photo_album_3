@@ -1,1 +1,14 @@
-<h1>Add photo here!</h1>
+<a href="{% url 'index' %}">Go back</a>
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input required type="file" name="img_upload" id="img_upload" />
+  <select name="category" id="category">
+    <option value="none">Choose a category...</option>
+    {% for category in categories %}
+    <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="text" name="add_category" id="add_category" />
+  <input type="text" name="description" id="description" />
+  <button type="submit">Add photo</button>
+</form>

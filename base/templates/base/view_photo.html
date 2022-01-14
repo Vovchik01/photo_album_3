@@ -1,5 +1,4 @@
-<li>
-  <p>{{ photo.category }}</p>
-  <img style="width: 500px" src="{{ photo.image.url }}" alt="some image" />
-  <p>{{ photo.description }}</p>
-</li>
+<a href="{% url 'index' %}">Go back</a>
+<p>{{ photo.category }}</p>
+<img style="width: 500px" src="{{ photo.image.url }}" alt="some image" />
+<p>{{ photo.description }}</p>
