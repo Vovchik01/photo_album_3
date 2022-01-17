@@ -1,0 +1,19 @@
+<a href="{% url 'index' %}">Go back</a>
+<form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <select name="category" id="category">
+    {% if photo.category == 'none' %}
+    <option value="none" selected>Choose a category...</option>
+    {% else %}
+    <option value="none">Choose a category...</option>
+    {% endif %} {% for category in categories %} {% if photo.category.id == category.id %}
+    <option value="{{ category.id }}" selected>{{ category.name }}</option>
+    {% else %}
+    <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endif %} {% endfor %}
+  </select>
+  <input type="text" name="add_category" id="add_category" />
+  <input type="text" name="description" id="description" value="{{ photo.description }}" />
+  <button type="submit">Save</button>
+  <button type="reset">Reset</button>
+</form>

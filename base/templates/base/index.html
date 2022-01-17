@@ -13,6 +13,7 @@
     <img style="width: 200px" src="{{ photo.image.url }}" alt="some image" />
     <p>{{ photo.description }}</p>
     <a href="{% url 'view_photo' photo.id %}">View</a>
+    <a href="{% url 'edit_page' photo.id %}">Edit info</a>
   </li>
   {% endfor %}
 </ul>

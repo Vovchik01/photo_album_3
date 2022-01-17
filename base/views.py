@@ -44,3 +44,33 @@ def view_photo(request, pk):
     photo = Photo.objects.get(id=pk)
     context = {'photo': photo}
     return render(request, 'base/view_photo.html', context)
+
+
+def edit_page(request, pk):
+    categories = Category.objects.all()
+    photo = Photo.objects.get(id=pk)
+
+    if request.method == 'POST':
+        data = request.POST
+
+        if data['category'] != 'none':
+            category = Category.objects.get(id=data['category'])
+        elif data['add_category'] != '':
+            category, created = Category.objects.get_or_create(name=data['add_category'])
+        else:
+            category = None
+
+        photo = Photo.objects.filter(id=pk).update(
+                category=category,
+                description = data['description'],
+            )
+        return redirect('index')
+
+    context = {'photo': photo, 'categories': categories,}
+    return render(request, 'base/edit_page.html', context)
+
+
+def delete_page(request, pk):
+    photo = Photo.objects.get(id=pk)
+    context = {'photo': photo}
+    return render(request, 'base/view_photo.html', context)
