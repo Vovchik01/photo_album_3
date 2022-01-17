@@ -72,5 +72,9 @@ def edit_page(request, pk):
 
 def delete_page(request, pk):
     photo = Photo.objects.get(id=pk)
+    if request.method == 'POST':
+        photo.delete()
+        return redirect('index')
+        
     context = {'photo': photo}
-    return render(request, 'base/view_photo.html', context)
+    return render(request, 'base/delete_page.html', context)
