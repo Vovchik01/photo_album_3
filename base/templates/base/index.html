@@ -2,25 +2,43 @@
 <link rel="stylesheet" href="{% static 'base/css/index.css' %}" />
 {% endblock head %} {% block body %}
 <div class="left-part">
-  <ul>
-    <li><a href="{% url 'index' %}">All</a></li>
+  <ul class="categories">
+    <li class="var_nav">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <a href="{% url 'index' %}"><span>All</span></a>
+      </div>
+    </li>
     {% for category in categories %}
-    <li><a href="{% url 'index' %}?category={{ category.name }}">{{ category.name }}</a></li>
+    <li class="var_nav">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <a href="{% url 'index' %}?category={{ category.name }}"><span>{{ category.name }}</span></a>
+      </div>
+    </li>
     {% endfor %}
-    <li><a href="{% url 'add_photo' %}">Add photo</a></li>
+    <li class="var_nav">
+      <div class="link_bg col"></div>
+      <div class="link_title">
+        <a href="{% url 'add_photo' %}"><span>Add Photo</span></a>
+      </div>
+    </li>
   </ul>
 </div>
 <div class="right-part">
-  <ul>
-    {% for photo in photos %}
-    <li>
-      <p>{{ photo.category }}</p>
-      <img style="width: 200px" src="{{ photo.image.url }}" alt="some image" />
-      <p>{{ photo.description }}</p>
-      <a href="{% url 'view_photo' photo.id %}">View</a>
-      <a href="{% url 'edit_page' photo.id %}">Edit info</a>
-    </li>
-    {% endfor %}
-  </ul>
+  {% for photo in photos %}
+
+  <div class="card">
+    <img class="card-image" src="{{ photo.image.url }}" />
+    <div class="card-text-category">Category: {{ photo.category.name }}</div>
+    <div class="card-text-description">Description: {{ photo.description | truncatewords:20}}</div>
+    <div class="card-button-block">
+      <a class="card-button" href="{% url 'view_photo' photo.id %}">View</a>
+      <a class="card-button" href="{% url 'edit_page' photo.id %}">Edit info</a>
+    </div>
+  </div>
+  {% empty %}
+  <h1>No photos here!</h1>
+  {% endfor %}
 </div>
 {% endblock body %}

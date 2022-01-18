@@ -1,21 +1,54 @@
-{% extends 'base/base.html' %} {% block body %}
-<a href="{% url 'index' %}">Go back</a>
+{% extends 'base/base.html' %} {% load static %} {% block head %}
+
+<link rel="stylesheet" href="{% static 'base/css/edit_page.css' %}" />
+{% endblock head %} {% block body %}
+
+<a class="back-button" href="{% url 'index' %}">Go back</a>
+
 <form action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  <select name="category" id="category">
-    {% if photo.category == 'none' %}
-    <option value="none" selected>Choose a category...</option>
-    {% else %}
-    <option value="none">Choose a category...</option>
-    {% endif %} {% for category in categories %} {% if photo.category.id == category.id %}
-    <option value="{{ category.id }}" selected>{{ category.name }}</option>
-    {% else %}
-    <option value="{{ category.id }}">{{ category.name }}</option>
-    {% endif %} {% endfor %}
-  </select>
-  <input type="text" name="add_category" id="add_category" />
-  <input type="text" name="description" id="description" value="{{ photo.description }}" />
-  <button type="submit">Save</button>
-  <button type="reset">Reset</button>
+  <div class="form-group">
+    <select name="category" id="category" class="form-group__input" autocomplete="off" placeholder="">
+      {% if photo.category == 'none' %}
+      <option value="none" selected>Choose a category...</option>
+      {% else %}
+      <option value="none">Choose a category...</option>
+      {% endif %} {% for category in categories %} {% if photo.category.id == category.id %}
+      <option value="{{ category.id }}" selected>{{ category.name }}</option>
+      {% else %}
+      <option value="{{ category.id }}">{{ category.name }}</option>
+      {% endif %} {% endfor %}
+    </select>
+    <label for="category" class="form-group__label">Category</label>
+  </div>
+
+  <div class="form-group">
+    <input
+      name="add_category"
+      type="text"
+      id="add_category"
+      class="form-group__input"
+      autocomplete="off"
+      placeholder=""
+    />
+    <label for="add_category" class="form-group__label">Add a category</label>
+  </div>
+
+  <div class="form-group">
+    <input
+      name="description"
+      type="text"
+      id="description"
+      class="form-group__input"
+      autocomplete="off"
+      placeholder=""
+      value="{{ photo.description }}"
+    />
+    <label for="description" class="form-group__label">Description</label>
+  </div>
+  <div class="form-group">
+    <button name="submit_btn" id="submit_btn" type="submit" class="form-group__input">Confirm</button>
+  </div>
 </form>
+
 {% endblock body %}

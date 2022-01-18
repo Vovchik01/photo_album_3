@@ -1,8 +1,152 @@
 .left-part {
-  background: chartreuse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+  flex: 1;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  backface-visibility: hidden;
+}
+
+.categories {
+  position: fixed;
+  top: 65px;
+  left: 275px;
+}
+
+.var_nav {
+  border-radius: 10px;
+  position: relative;
+  background: #5a5a5a;
+  width: 300px;
+  height: 70px;
+  margin-bottom: 5px;
+}
+.link_bg {
+  border-radius: 10px;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  background: #e08d1b;
+  color: #fff;
+  z-index: 2;
+}
+.link_title {
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+.var_nav:hover .link_bg {
+  width: 100%;
+  background: #e08d1b;
+  transition: all 0.3s ease-in-out;
+}
+
+.var_nav:hover .col {
+  width: 100%;
+  background: green;
+  transition: all 0.3s ease-in-out;
+}
+
+.col {
+  background: green;
+}
+
+.var_nav:hover a {
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.link_title > a {
+  display: block;
+  position: absolute;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+}
+
+span {
+  margin-top: 25px;
+  display: block;
 }
 
 .right-part {
+  margin: 25px;
+  justify-content: space-evenly;
+  flex: 3;
   display: flex;
-  background: crimson;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 200px 30px 100px 60px;
+  grid-template-areas: "image" "category" "description" "button";
+  grid-gap: 10px;
+  font-family: roboto;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+
+  transition: 0.5s ease;
+
+  margin: 10px;
+}
+
+.card-image {
+  min-height: 200px;
+  max-height: 200px;
+  max-width: 300px;
+  object-fit: cover;
+  background-size: cover;
+  grid-area: image;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-text-category {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: category;
+}
+
+.card-text-description {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: description;
+}
+
+.card-button-block {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-area: button;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.card-button {
+  text-decoration: none;
+  padding: 20px 50px;
+  background: grey;
+  color: honeydew;
+  border-radius: 30px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
 }
