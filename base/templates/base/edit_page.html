@@ -1,3 +1,4 @@
+{% extends 'base/base.html' %} {% block body %}
 <a href="{% url 'index' %}">Go back</a>
 <form action="" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
@@ -17,3 +18,4 @@
   <button type="submit">Save</button>
   <button type="reset">Reset</button>
 </form>
+{% endblock body %}

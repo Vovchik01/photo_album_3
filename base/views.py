@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from datetime import datetime
 from .models import *
 
 def index(request):
@@ -9,9 +10,12 @@ def index(request):
         photos = Photo.objects.all()
     else:
         photos = Photo.objects.filter(category__name=category)
+
+    now = datetime.now()
+    current_year = now.year
     
 
-    context = {'categories': categories, 'photos': photos,}
+    context = {'categories': categories, 'photos': photos, 'current_year': current_year,}
     return render(request, 'base/index.html', context)
 
 def add_photo(request):
@@ -36,19 +40,28 @@ def add_photo(request):
 
         return redirect('index')
 
+    now = datetime.now()
+    current_year = now.year
 
-    context = {'categories': categories,}
+    context = {'categories': categories, 'current_year': current_year,}
     return render(request, 'base/add_photo.html', context)
 
 def view_photo(request, pk):
     photo = Photo.objects.get(id=pk)
-    context = {'photo': photo}
+
+    now = datetime.now()
+    current_year = now.year
+
+    context = {'photo': photo, 'current_year': current_year,}
     return render(request, 'base/view_photo.html', context)
 
 
 def edit_page(request, pk):
     categories = Category.objects.all()
     photo = Photo.objects.get(id=pk)
+
+    now = datetime.now()
+    current_year = now.year
 
     if request.method == 'POST':
         data = request.POST
@@ -66,15 +79,20 @@ def edit_page(request, pk):
             )
         return redirect('index')
 
-    context = {'photo': photo, 'categories': categories,}
+    context = {'photo': photo, 'categories': categories, 'current_year': current_year,}
     return render(request, 'base/edit_page.html', context)
 
 
 def delete_page(request, pk):
     photo = Photo.objects.get(id=pk)
+
+    now = datetime.now()
+    current_year = now.year
+
     if request.method == 'POST':
         photo.delete()
         return redirect('index')
         
-    context = {'photo': photo}
+    context = {'photo': photo, 'current_year': current_year,}
     return render(request, 'base/delete_page.html', context)
+

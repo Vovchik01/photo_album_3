@@ -1,0 +1,8 @@
+.left-part {
+  background: chartreuse;
+}
+
+.right-part {
+  display: flex;
+  background: crimson;
+}

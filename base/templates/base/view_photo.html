@@ -1,6 +1,8 @@
+{% extends 'base/base.html' %} {% block body %}
 <a href="{% url 'index' %}">Go back</a>
 <a href="{% url 'edit_page' photo.id %}">Edit info</a>
 <a href="{% url 'delete_page' photo.id %}">Delete</a>
 <p>{{ photo.category }}</p>
 <img style="width: 500px" src="{{ photo.image.url }}" alt="some image" />
 <p>{{ photo.description }}</p>
+{% endblock body %}
